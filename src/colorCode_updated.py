@@ -1,4 +1,7 @@
+# Version: 1.0.0
+
 import logging
+from datetime import datetime
 import sys
 import os
 import time
@@ -7,21 +10,16 @@ import pandas as pd
 import webbrowser
 from pathlib import Path
 
-# Append the path to the utils module to sys.path
-sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'src')))
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), 'utils')))
 
-# Import the logger module
-from utils import shcLogger1 as logger
-
-# Define the log file path relative to the current script directory
-log_file_path = os.path.join(os.path.dirname(__file__), 'shc.log')
+from shcLogger1 import setup_logging, log_info, log_error, log_execution_time
 
 # Set up logging
-logger.setup_logging(log_file=log_file_path)
+setup_logging()
 
 def create_dataframe():
     try:
-        logger.log_info("Creating dataframe.")
+        log_info("Creating dataframe.")
         data = {
             'name': ['Arun', 'Nam', 'Difference'],
             'num1': [1, 1.2, None],
@@ -37,18 +35,18 @@ def create_dataframe():
         }
         df = pd.DataFrame(data)
         df.loc[2, 'num1':'num10'] = df.loc[0, 'num1':'num10'] - df.loc[1, 'num1':'num10']
-        logger.log_info("Dataframe created successfully.")
+        log_info("Dataframe created successfully.")
         return df
     except Exception as e:
-        logger.log_error(f"Error creating dataframe: {e}")
+        log_error(f"Error creating dataframe: {e}")
         raise
 
 def color_difference(df):
     def apply_color(row):
         if row.name == 2:
             colors = []
-            for cell_value in row[1:]:  # Skip the 'name' column
-                if isinstance(cell_value, (int, float)):  # Only apply to numeric values
+            for cell_value in row[1:]:
+                if isinstance(cell_value, (int, float)):
                     if cell_value < 0:
                         colors.append('background-color: red')
                     elif cell_value == 0:
@@ -59,7 +57,7 @@ def color_difference(df):
                         colors.append('background-color: white')
                 else:
                     colors.append('background-color: white')
-            return ['background-color: white'] + colors  # Add white background for the 'name' column
+            return ['background-color: white'] + colors
         else:
             return ['background-color: white'] * len(row)
 
@@ -68,15 +66,15 @@ def color_difference(df):
 
 def display_html(df):
     try:
-        logger.log_info("Converting dataframe to HTML with styling.")
+        log_info("Converting dataframe to HTML with styling.")
         styled_df = color_difference(df)
-        html = styled_df.to_html()  # Using to_html instead of render
+        html = styled_df.to_html()
         file_path = Path('output.html')
         file_path.write_text(html, encoding='utf-8')
-        logger.log_info(f"HTML conversion successful. File saved as {file_path}")
+        log_info(f"HTML conversion successful. File saved as {file_path}")
         webbrowser.open(file_path.resolve().as_uri())
     except Exception as e:
-        logger.log_error(f"Error converting dataframe to HTML: {e}")
+        log_error(f"Error converting dataframe to HTML: {e}")
         raise
 
 def main():
@@ -84,7 +82,7 @@ def main():
     df = create_dataframe()
     display_html(df)
     end_time = time.time()
-    logger.log_execution_time(start_time, end_time)
+    log_execution_time(start_time, end_time)
 
 if __name__ == "__main__":
     main()

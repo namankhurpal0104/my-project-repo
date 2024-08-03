@@ -1,0 +1,28 @@
+/* utils/style.css */
+.table {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 25px 0;
+    font-size: 18px;
+    text-align: left;
+}
+
+th, td {
+    padding: 12px;
+    border: 1px solid #ddd;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #ddd;
+}
+
+/* Style for the 'Difference' row */
+td {
+    text-align: center;
+}
+
+/* Background color for the difference cells will be applied inline */

@@ -1,0 +1,7 @@
+
+logging:
+  level: INFO
+
+output:
+  file_path: "../../output/output.html"
+  css_file: "../../output/style.css"

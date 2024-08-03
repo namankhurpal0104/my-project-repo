@@ -1,0 +1,14 @@
+2024-07-12 09:50:46,251 - INFO - Creating dataframe.
+2024-07-12 09:50:46,268 - INFO - Dataframe created successfully.
+2024-07-12 09:50:46,268 - INFO - Converting dataframe to HTML with styling.
+2024-07-12 09:50:46,856 - INFO - HTML conversion successful. File saved as output.html
+2024-07-12 09:50:47,059 - INFO - Execution started at: 2024-07-12 09:50:46
+2024-07-12 09:50:47,059 - INFO - Execution finished at: 2024-07-12 09:50:47
+2024-07-12 09:50:47,059 - INFO - Total execution time: 0.81 seconds
+2024-07-12 09:51:19,029 - INFO - Creating dataframe.
+2024-07-12 09:51:19,032 - INFO - Dataframe created successfully.
+2024-07-12 09:51:19,032 - INFO - Converting dataframe to HTML with styling.
+2024-07-12 09:51:19,410 - INFO - HTML conversion successful. File saved as output.html
+2024-07-12 09:51:19,596 - INFO - Execution started at: 2024-07-12 09:51:19
+2024-07-12 09:51:19,596 - INFO - Execution finished at: 2024-07-12 09:51:19
+2024-07-12 09:51:19,596 - INFO - Total execution time: 0.57 seconds
